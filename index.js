@@ -5,10 +5,15 @@ const pool = require("./db")
 const { formatDate, formatDateTo } = require('./utils/formatDateForDb')
 const PORT = process.env.PORT || 5000
 const app = express()
+const path = require("path");
 
 //middleware
 app.use(cors());
 app.use(express.json());
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "client/build")));
+  }
 
 //create ingredient
 app.post("/addIngredient", async (req, res) => {
@@ -213,6 +218,10 @@ app.delete("/deleteRecipe/:id", async (req, res) => {
         console.error("deleteRecipe error : " + error)
     }
 })
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
 app.listen(PORT, () => {
     console.log(`Le serveur est lancé sur le port : ${PORT}`)
