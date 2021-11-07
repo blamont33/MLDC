@@ -31,15 +31,15 @@ const Modal = ({ recipe, getAllRecipes, parts, setParts }) => {
     }
 
     return (
-        <>
+        <div className="modal-recipe">
             <div className="modal" id="myModal">
-                <div className="modal-mobile modal-dialog ">
+                <div className="md modal-dialog ">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h4 className="modal-title">{recipe.name} ({recipe.cal} kcal)</h4>
                             <button type="button" className="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <div className="modal-body pl-4">
+                        <div className="mb modal-body pl-4">
                             <b>Nombre de parts :</b> <input type="number" value={parts ? parts : recipe.nb_persons} className="inline-form nb-parts" onChange={(e) => setParts(e.target.value)} />
                             <div className="mb-2"><b>Ingrédients :</b></div>
                             {ingredients.map((val, index) => {
@@ -61,8 +61,7 @@ const Modal = ({ recipe, getAllRecipes, parts, setParts }) => {
                 </div>
                 <ModalDelete recipe={recipe} getAllRecipes={getAllRecipes}></ModalDelete>
             </div>
-
-        </>
+        </div>
 
     )
 }

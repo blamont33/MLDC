@@ -76,33 +76,29 @@
     width: 50px;
 }
 
-.modal-dialog {
-    max-height: 80vh;
-    overflow-y: initial !important;
-}
-
-.modal-body {
+.mb {
     max-height: 80vh;
     overflow-y: auto;
+}
+
+.md {
+    max-width: 100%;
+    width: 75%;
+    max-height: 80vh;
 }
 
 .name-recipe {
     overflow: hidden;
 }
 
-.modal-dialog {
-    max-width: 100%;
-    width: 75%;
-}
-
 @media screen and (max-width: 1024px) {
 
-    .modal-mobile {
+    .modal-dialog {
         max-width: unset;
         width: unset;
     }
 
     .modal-content{
-        max-height: 90vh;
+        max-height: 85vh;
     }
 }
