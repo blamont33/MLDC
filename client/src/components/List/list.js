@@ -17,7 +17,7 @@ const List = () => {
             setList(JSON.parse(sessionStorage.getItem('list')))
             history.replace()
         }
-    }, [location])
+    }, [location, history])
 
     useEffect(() => {
         const getIngredients = async () => {

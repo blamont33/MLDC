@@ -23,7 +23,7 @@ function App() {
     <Router>
       <div className="navbar">
         <div className="wrap-logo">
-          <div className="logo">MDLC</div>
+          <div className="logo">MLDC</div>
           <div><AiOutlineMenu onClick={() => setShow(!show)} className="btn-menu" /></div>
         </div>
         <div className={nav}>

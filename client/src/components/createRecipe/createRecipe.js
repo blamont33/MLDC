@@ -15,7 +15,7 @@ const CreateRecipe = () => {
     const [rerender, setRerender] = useState(true);
     const [name, setName] = useState("");
     const [link, setLink] = useState("");
-    const [noParts, setNbParts] = useState();
+    const [noParts, setNbParts] = useState("");
     const [making, setMaking] = useState();
     const [searchTerm, setSearchTerm] = useState("");
     const [ingredient, setIngredient] = useState("");
@@ -23,7 +23,7 @@ const CreateRecipe = () => {
     const location = useLocation();
     const [id_recipe, setId_recipe] = useState("");
     const history = useHistory();
-    const [calories, setCalories] = useState(undefined)
+    const [calories, setCalories] = useState("")
     const refName = useRef(null)
     const missName = useRef(null)
     const refParts = useRef(null)
@@ -60,7 +60,7 @@ const CreateRecipe = () => {
 
     //Add an ingredient to the recipe
     const pushIngredient = (id_ingredient, name) => {
-        if (!quantity || quantity == 0) {
+        if (!quantity || quantity === "0") {
             if (window.innerWidth > 1024) {
                 document.getElementById("qte" + id_ingredient).style.display = 'block'
             }
@@ -134,6 +134,9 @@ const CreateRecipe = () => {
             missParts.current.style.display = 'block'
         } else {
             try {
+                if(calories === ""){
+                    setCalories(null);
+                }
                 const body = { name: name.toLowerCase(), link: link, nb_persons: noParts, making: making, ingredients: ingredientsAdded, calories: calories };
                 await fetch("/addRecipe", {
                     method: "POST",
@@ -157,6 +160,9 @@ const CreateRecipe = () => {
             missParts.current.style.display = 'block'
         } else {
             try {
+                if(calories === ""){
+                    setCalories(null);
+                }
                 const body = { name: name.toLowerCase(), link: link, nb_persons: noParts, making: making, ingredients: ingredientsAdded, id_recipe: id_recipe, calories: calories };
                 await fetch("/updateRecipe", {
                     method: "PUT",

@@ -33,7 +33,7 @@ const SearchBar = ({ ingredients, list, setRerender }) => {
         let newList = list;
         let sameIngredient = false;
         newList.map(element => {
-            if (element.name.toLowerCase() === ingredient.name.toLowerCase() && element.measure === ingredient.measure) {
+           if (element.name.toLowerCase() === ingredient.name.toLowerCase() && element.measure === ingredient.measure) {
                 element.quantity = parseInt(element.quantity) + parseInt(ingredient.quantity)
                 sameIngredient = true;
             }

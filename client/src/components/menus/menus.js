@@ -24,10 +24,6 @@ const Menus = ({ menu, setMenu }) => {
         }
     };
 
-    //console.log(recipes)
-    console.log(menu)
-    console.log(recipe)
-
     useEffect(() => {
         getDates();
     }, [])
