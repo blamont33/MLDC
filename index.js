@@ -31,10 +31,12 @@ app.post("/addIngredient", async (req, res) => {
 app.post("/addRecipe", async (req, res) => {
 
     try {
-        const { name, link, nb_persons, making, ingredients, calories } = req.body;
-
+        let { name, link, nb_persons, making, ingredients, calories } = req.body;
+        if(calories === ""){
+           calories = null;
+        }
         const getRecipeId = await pool.query("insert into recipes values (default, $1, $2, $3, $4, $5) returning id_recipe", [name, link, nb_persons, making, calories]);
-        const id_recipe = getRecipeId.rows[0].id_recipe;
+        const id_recipe = await getRecipeId.rows[0].id_recipe;
 
         await ingredients.forEach(element => {
             pool.query("insert into recipes_ingredients values ($1, $2, $3, $4) ", [element.id_ingredient, id_recipe, element.quantity, element.measure]);
@@ -83,7 +85,6 @@ app.post("/addMenu", async (req, res) => {
 app.delete("/deleteMenu/:id", async (req, res) => {
     try {
         const {id} = req.params
-        console.log(id)
         await pool.query("delete from menu_recipes where id_menu = $1", [id])
         await pool.query("delete from menu where id_menu = $1", [id])
     } catch (error) {
@@ -150,7 +151,10 @@ app.get("/allIngredients", async (req, res) => {
 //Update recipe
 app.put("/updateRecipe", async (req, res) => {
     try {
-        const { name, link, nb_persons, making, ingredients, id_recipe, calories } = req.body;
+        let { name, link, nb_persons, making, ingredients, id_recipe, calories } = req.body;
+        if(calories === ""){
+            calories = null
+        }
         await pool.query(`update recipes r set name = $1, link = $2, nb_persons= $3, making = $4, cal = $5 where r.id_recipe = $6;`, [name, link, nb_persons, making, calories, id_recipe]);
         await pool.query(`delete from recipes_ingredients r where r.id_recipe = $1;`, [id_recipe]);
         await ingredients.forEach(element => {
@@ -210,7 +214,6 @@ app.get("/finalList", async (req, res) => {
 //Delete recipe
 app.delete("/deleteRecipe/:id", async (req, res) => {
     try {
-        console.log(req.params)
         const { id } = req.params;
         await pool.query("delete from recipes_ingredients where id_recipe = $1", [id]);
         await pool.query("delete from recipes where id_recipe = $1", [id]);
