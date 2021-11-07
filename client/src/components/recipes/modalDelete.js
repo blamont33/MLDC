@@ -8,9 +8,8 @@ const ModalDelete = ({ recipe, getAllRecipes }) => {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" }
             }).then(
-                getAllRecipes()
+                await getAllRecipes()
             )
-
         } catch (error) {
             console.error("deleteRecipe error : " + error.message)
         }
