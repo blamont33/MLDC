@@ -33,7 +33,7 @@ const Modal = ({ recipe, getAllRecipes, parts, setParts }) => {
     return (
         <>
             <div className="modal" id="myModal">
-                <div className="modal-dialog">
+                <div className="modal-mobile modal-dialog ">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h4 className="modal-title">{recipe.name} ({recipe.cal} kcal)</h4>

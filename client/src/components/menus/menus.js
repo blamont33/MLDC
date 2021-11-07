@@ -149,8 +149,9 @@ const Menus = ({ menu, setMenu }) => {
             <div className="wrapper-recipes">
                 {recipes.map((recipe, index) => {
                     return (
-                        <div className="recipe" key={index} data-toggle="modal" data-target="#myModal" onClick={() => setRecipe(recipe)}>{recipe.name}
-                            <AiFillCloseCircle className="close-btn" onClick={(e) => removeRecipe(recipe.id_recipe, e)} />
+                        <div className="recipe" key={index} data-toggle="modal" data-target="#myModal" onClick={() => setRecipe(recipe)}>
+                        <div className="name-recipe">{recipe.name} {recipe.cal && "(" + recipe.cal + " kcal)"}</div>
+                           <div className="close-btn"> <AiFillCloseCircle onClick={(e) => removeRecipe(recipe.id_recipe, e)} /></div>
                         </div>
                     )
                 })}

@@ -97,9 +97,12 @@
 
 @media screen and (max-width: 1024px) {
 
-    .modal-dialog {
+    .modal-mobile {
         max-width: unset;
         width: unset;
+    }
 
+    .modal-content{
+        max-height: 97vh;
     }
 }
