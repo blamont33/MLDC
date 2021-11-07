@@ -43,7 +43,7 @@ const Modal = ({ recipe, getAllRecipes, parts, setParts }) => {
                             <b>Nombre de parts :</b> <input type="number" value={parts ? parts : recipe.nb_persons} className="inline-form nb-parts" onChange={(e) => setParts(e.target.value)} />
                             <div className="mb-2"><b>Ingrédients :</b></div>
                             {ingredients.map((val, index) => {
-                                return <div key={index}>- {val.name} : {parts ? <b>{parseInt(val.quantity) / recipe.nb_persons * parts} {val.measure}</b> : <b>{val.quantity}</b>}</div>
+                                return <div key={index}>- {val.name} : {parts ? <b>{parseInt(val.quantity) / recipe.nb_persons * parts} {val.measure}</b> : <b>{val.quantity} {val.measure}</b>}</div>
                             })}
                             {recipe.making && <div className="mb-2 mt-3"><b>Préparation :</b></div>}
                             {recipe.making && <div className="making mb-3">{recipe.making}</div>}

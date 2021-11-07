@@ -134,19 +134,17 @@ const CreateRecipe = () => {
             missParts.current.style.display = 'block'
         } else {
             try {
-                if(calories === ""){
-                    setCalories(null);
-                }
                 const body = { name: name.toLowerCase(), link: link, nb_persons: noParts, making: making, ingredients: ingredientsAdded, calories: calories };
                 await fetch("/addRecipe", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body)
-                })
+                }).then(
+                    window.location = './recette'
+                )
             } catch (error) {
                 console.error("addRecipe error : " + error)
             }
-            window.location = './recette'
         }
     }
 
@@ -160,9 +158,6 @@ const CreateRecipe = () => {
             missParts.current.style.display = 'block'
         } else {
             try {
-                if(calories === ""){
-                    setCalories(null);
-                }
                 const body = { name: name.toLowerCase(), link: link, nb_persons: noParts, making: making, ingredients: ingredientsAdded, id_recipe: id_recipe, calories: calories };
                 await fetch("/updateRecipe", {
                     method: "PUT",
